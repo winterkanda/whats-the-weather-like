@@ -17,7 +17,6 @@ $(document).ready(function () {
   //empty arrays
   clickList();
   loadCities();
-  citySearch();
 
   //pulls saved cities from local storage and fills array
   function loadCities() {
@@ -64,28 +63,6 @@ $(document).ready(function () {
       console.log("Text...");
       city = $(this).text().trim();
       callAPI();
-    });
-  }
-
-  //listener for the search bar
-  function citySearch() {
-    $("#searchBtn").on("click", function (event) {
-      event.preventDefault();
-      city = $("#searchTerm").val().trim();
-
-      cities.push(city);
-
-      if (cities.length > 6) {
-        cities.shift();
-      }
-
-      if (city == "") {
-        return;
-      }
-
-      callAPI();
-      savedCities();
-      renderSearches();
     });
   }
 
@@ -168,5 +145,25 @@ $(document).ready(function () {
 
     //to clear all buttons
     $(pastSearches).html("");
+  });
+
+  //listener for the search bar
+  $("#searchBtn").on("click", function (event) {
+    event.preventDefault();
+    city = $("#searchTerm").val().trim();
+
+    cities.push(city);
+
+    if (cities.length > 6) {
+      cities.shift();
+    }
+
+    if (city == "") {
+      return;
+    }
+
+    callAPI();
+    savedCities();
+    renderSearches();
   });
 });
