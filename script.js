@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   var todaysForecast = $("#todaysForecast");
   var showCity = $("#showCity");
-  var fiveDayForecast = $("fiveDayForecast");
+  var fiveDayForecast = $("#fiveDayForecast");
 
   //empty arrays
   clickList();
@@ -68,21 +68,26 @@ $(document).ready(function () {
 
   //API calls for current weather data and for five-day forecast
   function callAPI() {
+    
     //unhide content divs
     $(todaysForecast).removeClass("hidden");
     $(fiveDayForecast).removeClass("hidden");
 
     url = "https://api.openweathermap.org/data/2.5/forecast?q=";
     currentURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-    APIkey = "&appid=02da76f96bbecdaa1d2570c95618aa90";
-    query = url + city + APIkey;
-    currentWeatherUrl = currentURL + city + APIkey;
+    APIkey = "&appid=119963be56e4b54eb8cc1b36349a2d7c";
+    
+    var units = "&units=imperial";
 
-    $(showCity).text("Today's Weather In" + city);
+    query = url + city + APIkey + units;
+    currentWeatherUrl = currentURL + city + APIkey + units;
+
+    $(showCity).text("Today's Weather In " + city );
     $.ajax({
       url: query,
       method: "GET",
     }).then(function (response) {
+        console.log("forecast",response)
       let dayNum = 0;
 
       for (let i = 0; i < response.list.length; i++) {
@@ -93,13 +98,13 @@ $(document).ready(function () {
 
           $("#" + dayNum + "date").text(month + "/" + day + "/" + year);
 
-          var temp;
+          var temp = response.list[i].main.temp;
 
           $("#" + dayNum + "fiveDayHumidity").text(
             "Humidity: " + response.list[i].main.humidity
           );
           $("#" + dayNum + "fiveDayTemp").text(
-            "Temperature: " + temp + String.fromCharCode(176) + "F"
+            "Temperature: " + temp + "F"
           );
           $("#" + dayNum + "fiveDayImage").attr(
             "src",
@@ -122,7 +127,7 @@ $(document).ready(function () {
       var temp = Math.round(((current_data.main.temp - 273.15) * 9) / 5 + 32);
       console.log("Current Temperature in " + city + " is: " + temp);
       $("#humidity").text("Humidity: " + current_data.main.humidity);
-      $("#temp").text("Temperature: " + temp + String.fromCharCode(176) + "F");
+      $("#temp").text("Temperature: " + temp + "F");
       $("#windSpeed").text("Wind Speed: " + current_data.wind.speed);
 
       $("#todayImage").attr({
@@ -148,18 +153,19 @@ $(document).ready(function () {
   });
 
   //listener for the search bar
-  $("#searchBtn").on("click", function (event) {
+  $("#searchButton").on("click", function (event) {
     event.preventDefault();
+
+    if (city == "") {
+        return;
+    }
+
     city = $("#searchTerm").val().trim();
 
     cities.push(city);
 
     if (cities.length > 6) {
       cities.shift();
-    }
-
-    if (city == "") {
-      return;
     }
 
     callAPI();
