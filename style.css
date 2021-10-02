@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 34px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    color: var(--light-blue);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--dark-color);
+    background-color: var(--light-blue);
+}
+
+p {
+    text-align: center;
+}
+
+p, h2, h3, h4 {
+    color: var(--dark-grey);
+}
+
+p, h4 {
+    font-weight: bold;
+    line-height: 1;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+.searchList {
+    justify-content: space-between;
+}
+
+#searchDiv {
+    text-align: center;
+    padding-top: 20px;
+    color: var(--dark-grey);
+}
+
+#searchBtn {
+    background-color: var(--dark-grey);
+    padding: 5.5px;
+    width: 20%;
+    line-height: 1.5;
+    border-radius: 10px;
+    color: var(--light-pink);
+}
+
+#searchTerm {
+    width: 70%;
+    padding: 4px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.results {
+    color: var(--light-pink);
+    text-align: center;
+}
+
+.cityBtn {
+    border-radius: 10px;
+    color: var(--light-pink);
+    width: 80%;
+    margin: 5px;
+    background-color: var(--dark-grey);
+    line-height: 1.5;
+}
+
+#todaysForecast {
+    background-color: var(--light-pink);
+    color: var(--dark-grey);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#fiveDayForecast p {
+    text-align: center;
+    padding: 0 10px 0 0;
+    color: var(--light-pink);
+}
+
+#todaysForecast, #fiveDayForecast {
+    border: solid 1px rgb(60, 55, 86);
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.safe {
+
+}
+
+.danger {
+
+}
+
+.warning {
+
+}
+
+.card {
+    background-color: var(--dark-grey);
+}
+
+.cityBtn:hover, #trash:hover, .btn:hover {
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+:root {
+    --light-color: white;
+    --dark-grey: rgb(55, 58, 86);
+    --light-pink: rgb(219, 144, 216);
+    --dark-color: black;
+}

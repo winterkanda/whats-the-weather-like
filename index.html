@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hey, What's the Weather Like Today?</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Orelega+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>What's the Weather Like Today?</h1>
+    </header>
+
+    <main>
+      <div class="container-fluid row">
+        <div id="searchDiv" class="col-3 justify-content-center pt-3">
+          <div class="mb-4">
+            <h4 class="justify-content-center pt-2 pl-3">Enter City Name:</h4>
+            <form id="searchBar" class="form-inline my-2 my-lg-0 mt-3 ml-3">
+              <input
+                class="form-control mr-sm-2 float-left"
+                type="search"
+                placeholder="San Francisco"
+                id="searchTerm"
+              />
+              <button
+                id="searchButton"
+                class="btn my-2 my-sm-0 oi oi-magnifying-glass"
+                type="text"
+              ></button>
+            </form>
+          </div>
+          <h4 class="justify-content-center pt-2 pl-3">Cities Searched</h4>
+          <div class="container my-3 col-12" id="pastSearches"></div>
+
+          <div class="row mt-auto overflow-hidden" id="trash">
+            <div class="w-100 p-3 text-center">
+              <span id="trash" class="oi oi-trash max-auto mb-4"> Clear </span>
+            </div>
+          </div>
+        </div>
+
+        <div id="todaysForecast" class="col-9 pt-3 hidden">
+          <div class="p-3">
+            <h2 class="justify-content-center" id="showCity"></h2>
+            <div class="row">
+              <div class="col-6">
+                <p id="temp"></p>
+                <p id="humidity"></p>
+                <p id="windSpeed"></p>
+                <p id="UV Index"></p>
+                <img id="todayImg" src="" />
+              </div>
+            </div>
+          </div>
+
+          <div id="fiveDayForecast" class="p-3 m-3 w-100 hidden">
+            <div>
+              <h4>Five-Day Forecast:</h4>
+            </div>
+            <div class="row justify-content-center">
+              <div id="day0" class="card mx-2 my-2">
+                <p id="0date"></p>
+                <p id="0fiveDayTemp"></p>
+                <p id="0fiveDayHumidity"></p>
+                <img id="0fiveDayImg" src="" />
+              </div>
+              <div id="day1" class="card mx-2 my-2">
+                <p id="1date"></p>
+                <p id="1fiveDayTemp"></p>
+                <p id="1fiveDayHumidity"></p>
+                <img id="1fiveDayImg" src="" />
+              </div>
+              <div id="day2" class="card mx-2 my-2">
+                <p id="2date"></p>
+                <p id="2fiveDayTemp"></p>
+                <p id="2fiveDayHumidity"></p>
+                <img id="2fiveDayImg" src="" />
+              </div>
+              <div id="day3" class="card mx-2 my-2">
+                <p id="3date"></p>
+                <p id="3fiveDayTemp"></p>
+                <p id="3fiveDayHumidity"></p>
+                <img id="3fiveDayImg" src="" />
+              </div>
+              <div id="day4" class="card mx-2 my-2">
+                <p id="4date"></p>
+                <p id="4fiveDayTemp"></p>
+                <p id="4fiveDayHumidity"></p>
+                <img id="4fiveDayImg" src="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.js"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </body>
+</html>
