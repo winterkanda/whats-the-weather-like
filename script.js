@@ -68,7 +68,8 @@ $(document).ready(function () {
 
   //API calls for current weather data and for five-day forecast
   function callAPI() {
-    
+    console.log(city)
+
     //unhide content divs
     $(todaysForecast).removeClass("hidden");
     $(fiveDayForecast).removeClass("hidden");
@@ -98,13 +99,13 @@ $(document).ready(function () {
 
           $("#" + dayNum + "date").text(month + "/" + day + "/" + year);
 
-          var temp = response.list[i].main.temp;
+          var temp = Math.round(response.list[i].main.temp);
 
           $("#" + dayNum + "fiveDayHumidity").text(
             "Humidity: " + response.list[i].main.humidity
           );
           $("#" + dayNum + "fiveDayTemp").text(
-            "Temperature: " + temp + "F"
+            "Temperature: " + temp + String.fromCharCode(176) + "F"
           );
           $("#" + dayNum + "fiveDayImage").attr(
             "src",
@@ -124,11 +125,11 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (current_data) {
       console.log(current_data);
-      var temp = Math.round(((current_data.main.temp - 273.15) * 9) / 5 + 32);
+      var temp = Math.round(current_data.main.temp);
       console.log("Current Temperature in " + city + " is: " + temp);
-      $("#humidity").text("Humidity: " + current_data.main.humidity);
-      $("#temp").text("Temperature: " + temp + "F");
-      $("#windSpeed").text("Wind Speed: " + current_data.wind.speed);
+      $("#humidity").html("<span class='font-weight-bold'>Humidity:</span> " + current_data.main.humidity);
+      $("#temp").html("<span class='font-weight-bold'>Temperature:</span> " + temp + String.fromCharCode(176) + "F");
+      $("#windSpeed").html("<span class='font-weight-bold'>Wind Speed:</span> " + current_data.wind.speed);
 
       $("#todayImage").attr({
         src:
@@ -138,6 +139,18 @@ $(document).ready(function () {
         height: "100px",
         width: "100px",
       });
+
+      var lat = current_data.coord.lat
+      var lon = current_data.coord.lon
+
+    //   $.ajax({
+    //       url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${APIkey}`,
+    //       method: "GET"
+    //   })
+    //   .then(function (uv_data) {
+    //       console.log("uv_data", uv_data)
+    //   })
+
     });
   }
 
@@ -155,10 +168,7 @@ $(document).ready(function () {
   //listener for the search bar
   $("#searchButton").on("click", function (event) {
     event.preventDefault();
-
-    if (city == "") {
-        return;
-    }
+    console.log("clicked")
 
     city = $("#searchTerm").val().trim();
 
@@ -166,6 +176,10 @@ $(document).ready(function () {
 
     if (cities.length > 6) {
       cities.shift();
+    }
+
+    if (city == "") {
+        return;
     }
 
     callAPI();
